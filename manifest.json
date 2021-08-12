@@ -1,0 +1,15 @@
+{
+  "name": "nice update twitter",
+  "action": {},
+  "manifest_version": 3,
+  "version": "0.1",
+  "description": "this will change the color of the buttons",
+  "content_scripts":[
+    {
+      "matches":[
+        "https://twitter.com/*"
+      ],
+      "js":["main.js"]
+    }
+  ]
+}
