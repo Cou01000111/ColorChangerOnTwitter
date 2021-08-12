@@ -1,13 +1,13 @@
-window.addEventListener("load", main, false);
+document.addEventListener("DOMContentLoaded", main, false);
 var observer = new MutationObserver(main);
 var target = document.getElementsByTagName('body');
-console.log(target);
 observer.observe(target[0], { childList: true, subtree: true });
 
 function main(e) {
-  var x = document.getElementsByTagName('div');
-  for (let index = 0; index < x.length; index++) {
-    const el = x[index];
+  console.log('main');
+  var divs = document.getElementsByTagName('div');
+  for (let i = 0; i < divs.length; i++) {
+    const el = divs[i];
     if (el.getAttribute('aria-label')) {
       var elLabel = el.getAttribute('aria-label');
       if ((elLabel.indexOf('フォロー中') != -1)) {
@@ -15,8 +15,15 @@ function main(e) {
         el.style.borderColor = 'rgba(0,0,0,0)';
       } else if ((elLabel.indexOf('フォロー') != -1)) {
         el.style.backgroundColor = 'rgba(0,0,0,0)';
-        el.children[0].children[0].children[0].style.color = 'white';
+        if (el.children[0].children[0].children[0])
+          el.children[0].children[0].children[0].style.color = 'white';
         el.style.borderColor = 'rgb(83, 100, 113)';
+        el.addEventListener('mouseenter', () => {
+          el.style.backgroundColor = 'rgba(255,255,255,0.15)';
+        });
+        el.addEventListener('mouseout', () => {
+          el.style.backgroundColor = 'rgba(0,0,0,0)';
+        });
       }
     }
   }

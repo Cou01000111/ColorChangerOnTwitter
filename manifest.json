@@ -1,5 +1,5 @@
 {
-  "name": "nice update twitter",
+  "name": "color changer on twitter",
   "action": {},
   "manifest_version": 3,
   "version": "0.1",
@@ -11,5 +11,8 @@
       ],
       "js":["main.js"]
     }
-  ]
+  ],
+  "icons":{
+    "64":"icon64.png"
+  }
 }
