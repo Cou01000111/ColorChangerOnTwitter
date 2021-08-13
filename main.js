@@ -11,12 +11,12 @@ var follow_cancel_back_color = 'rgb(220, 30, 41)';
 var transparent = 'rgba(0, 0, 0, 0)';
 
 function main(e) {
-  console.log('main');
+  //console.log('main');
   var divs = document.getElementsByTagName('span');
   for (let i = 0; i < divs.length; i++) {
     const el = divs[i];
     if (isButton(el) && el.children.length == 0 && el.innerText.length != 0) {
-      console.log(el);
+      //console.log(el);
       if (el.innerText == 'フォロー') {
         getParentButton(el).style.backgroundColor = follow_back_color;
         getParentButton(el).style.borderColor = follow_color;
