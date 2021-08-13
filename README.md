@@ -2,8 +2,9 @@
 
 For the best twitter updates
 
-アップデート前のボタンの色を忘れてしまったので、覚えてる方教えていただけると嬉しいです
-(作者のTwitter)[https://twitter.com/courange_ran]
+アップデート前のボタンの色を忘れてしまったので、覚えてる方[Twitter](https://twitter.com/courange_ran)のDMやissue等で教えていただけると嬉しいです
+
+
 
 # 色対応状況
 
