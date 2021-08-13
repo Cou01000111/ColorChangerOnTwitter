@@ -8,7 +8,7 @@ For the best twitter updates
 
 ||デフォルト|ダークブルー|ブラック|
 |--|--|--|--|
-|&#x1f499;|:white_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
+|&#x1f499;|&#9744;|&#9745;|&#9745;|
 |&#x2b50;||||
 |&#x1f338;||||
 |&#x1f419;||||
