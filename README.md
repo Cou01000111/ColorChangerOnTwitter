@@ -3,6 +3,7 @@
 For the best twitter updates
 
 アップデート前のボタンの色を忘れてしまったので、覚えてる方教えていただけると嬉しいです
+(作者のTwitter)[https://twitter.com/courange_ran]
 
 # 色対応状況
 
