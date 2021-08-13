@@ -36,7 +36,7 @@ function main(e) {
           getParentButton(el).style.backgroundColor = follow_cancel_back_color;
         });
         getParentButton(el).addEventListener('mouseleave', () => {
-          getParentButton(el).style.backgroundColor = follow_back_color;
+          getParentButton(el).style.backgroundColor = following_back_color;
         });
       } else if (el.innerText == 'フォロー解除') {
         getParentButton(el).style.backgroundColor = follow_cancel_back_color;
