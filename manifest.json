@@ -2,7 +2,7 @@
   "name": "color changer on twitter",
   "action": {},
   "manifest_version": 3,
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "this will change the color of the buttons",
   "content_scripts":[
     {
