@@ -4,7 +4,8 @@ For the best twitter updates
 
 アップデート前のボタンの色を忘れてしまったので、覚えてる方[Twitter](https://twitter.com/courange_ran)のDMやissue等で教えていただけると嬉しいです
 
-
+# 注意点
+twitterアプリ内から色を変えた時、リログするまでbuttonの色は変わりません
 
 # 色対応状況
 
