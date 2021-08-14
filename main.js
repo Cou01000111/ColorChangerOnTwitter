@@ -1,17 +1,29 @@
-document.addEventListener("DOMContentLoaded", main, false);
-var observer = new MutationObserver(main);
-var target = document.getElementsByTagName('body');
-observer.observe(target[0], { childList: true, subtree: true });
+//bc,cを設定=>observerを起動
 
-var following_back_color = 'rgb(29, 161, 242)';
-var following_color = 'white';
-var follow_back_color = 'rgba(0, 0, 0, 0)';
-var follow_color = 'white';
-var follow_cancel_back_color = 'rgb(220, 30, 41)';
-var transparent = 'rgba(0, 0, 0, 0)';
+var background_color;
+var color;
+var following_back_color;
+var following_color;
+var follow_back_color;
+var follow_color;
+const follow_cancel_back_color = 'rgb(220, 30, 41)';
+const TRANSPARENT = 'rgba(0, 0, 0, 0)';
+
+(async function (){
+  var observer = new MutationObserver(main);
+  var target = document.getElementsByTagName('body');
+
+  background_color = target[0].backgroundColor;
+  color = await getTweetButton();
+  console.log(background_color);
+  console.log(color);
+  setColors();
+  document.addEventListener("DOMContentLoaded", main, false);
+  observer.observe(target[0], { childList: true, subtree: true });
+})();
 
 function main(e) {
-  //console.log('main');
+  console.log('main');
   var divs = document.getElementsByTagName('span');
   for (let i = 0; i < divs.length; i++) {
     const el = divs[i];
@@ -29,7 +41,7 @@ function main(e) {
         });
       } else if (el.innerText == 'フォロー中') {
         getParentButton(el).style.backgroundColor = following_back_color;
-        getParentButton(el).style.borderColor = transparent;
+        getParentButton(el).style.borderColor = TRANSPARENT;
         el.style.color = following_color;
 
         getParentButton(el).addEventListener('mousemove', () => {
@@ -52,16 +64,33 @@ function main(e) {
   }
 }
 
-function getButtonText(el) {
-  if (el.children[0].children[0].children[0].innerText)
-    return (el.children[0].children[0].children[0].innerText)
-  return 0
-}
-
 function isButton(el) {
   return ((el.parentNode.parentNode.parentNode) ? 1 : 0) && (el.parentNode.parentNode.parentNode.getAttribute('role') == 'button');
 }
 
 function getParentButton(el) {
   return (el.parentNode.parentNode.parentNode);
+}
+
+function setColors() {
+  following_back_color = color;
+  following_color = 'white';
+  follow_back_color = 'rgba(0, 0, 0, 0)';
+  if (background_color == 'rgb(255, 255, 255)') {
+    follow_color = 'black';
+  }
+  else {
+    follow_color = 'white';
+  }
+}
+
+function getTweetButton() {
+  var set_interval_id = setInterval(() => {
+    tweetButton = Array.from(document.getElementsByTagName('a')).filter(tag => tag.getAttribute('aria-label') == 'ツイートする')[0];
+    console.log(tweetButton);
+    if (tweetButton) {
+      clearInterval(set_interval_id);
+      color = (tweetButton.backgroundColor);
+    };
+  }, 100);
 }
