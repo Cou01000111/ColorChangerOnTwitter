@@ -1,5 +1,4 @@
-//bc,cを設定=>observerを起動
-
+//グローバル変数を宣言
 var background_color;
 var color;
 var following_back_color;
@@ -9,21 +8,35 @@ var follow_color;
 const follow_cancel_back_color = 'rgb(220, 30, 41)';
 const TRANSPARENT = 'rgba(0, 0, 0, 0)';
 
-(async function (){
-  var observer = new MutationObserver(main);
-  var target = document.getElementsByTagName('body');
 
-  background_color = target[0].backgroundColor;
-  color = await getTweetButton();
-  console.log(background_color);
-  console.log(color);
-  setColors();
-  document.addEventListener("DOMContentLoaded", main, false);
-  observer.observe(target[0], { childList: true, subtree: true });
-})();
+window.addEventListener('load', () => {//オブザーバー関係,dom更新時にmainを走らせる
+  console.log('DOMContentLoaded');
+  var observer = new MutationObserver(main);
+  var target = document.querySelector('body');
+  //background_color.colorはmainで使われる
+  background_color = target.style.backgroundColor;
+  var id = setInterval(function () {
+    var button = Array.from(document.getElementsByTagName('a')).filter(tag => tag.getAttribute('aria-label') == 'ツイートする')[0];
+    if (button) {
+      console.log(button.style.backgroundColor);
+      color = button.style.backgroundColor;
+      console.log(background_color);
+      console.log(color);
+      setColors();
+      //オブザーバー起動
+      document.addEventListener("DOMContentLoaded", main, false);
+      observer.observe(target, { childList: true, subtree: true });
+      clearInterval(id);
+    }
+  }, 100);
+});
 
 function main(e) {
   console.log('main');
+  if (background_color == undefined || color == undefined)
+    return;
+  console.log(background_color);
+  console.log(color);
   var divs = document.getElementsByTagName('span');
   for (let i = 0; i < divs.length; i++) {
     const el = divs[i];
@@ -84,13 +97,15 @@ function setColors() {
   }
 }
 
-function getTweetButton() {
-  var set_interval_id = setInterval(() => {
-    tweetButton = Array.from(document.getElementsByTagName('a')).filter(tag => tag.getAttribute('aria-label') == 'ツイートする')[0];
+async function getTweetButton() {
+  await new Promise(resolve => {
+    setTimeout(resolve, 500);
+  });
+  tweetButton =
     console.log(tweetButton);
-    if (tweetButton) {
-      clearInterval(set_interval_id);
-      color = (tweetButton.backgroundColor);
-    };
-  }, 100);
+  if (tweetButton) {
+    console.log(tweetButton);
+    return (tweetButton);
+  };
+  await getTweetButton();
 }
